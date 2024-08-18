@@ -3,8 +3,8 @@ import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
 import { useContext } from "react";
-import { Button } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
+import Button from "./components/UI/Button";
 import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen";
 import ProfileScreen from "./screens/ProfileScreen";
@@ -31,7 +31,7 @@ function DrawerNavigator() {
 			screenOptions={{
 				drawerLabelStyle,
 				drawerActiveTintColor: "#000",
-				headerRight: () => <Button title="Chiqish" onPress={onLogout} />,
+				headerRight: () => <Button containerStyle={{ width: "", paddingHorizontal: 16, paddingVertical: 8, marginRight: 16 }} onPress={onLogout}>Chiqish</Button>,
 			}}
 		>
 			<Drawer.Screen

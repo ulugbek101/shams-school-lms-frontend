@@ -1,15 +1,9 @@
 import { useContext, useEffect, useState } from "react";
-import {
-	Image,
-	ImageBackground,
-	StyleSheet,
-	Text,
-	TextInput,
-	View,
-} from "react-native";
+import { Image, ImageBackground, StyleSheet, View } from "react-native";
 
 import { StatusBar } from "expo-status-bar";
 import Button from "../components/UI/Button";
+import Input from "../components/UI/Input";
 import { AuthContext } from "../store/auth-context";
 
 function LoginScreen({ route, navigation }) {
@@ -31,12 +25,7 @@ function LoginScreen({ route, navigation }) {
 
 	async function onFormSubmit() {
 		if (!formIsValid) return;
-		try {
-			login(email, password);
-			navigation.replace("drawer");
-		} catch (error) {
-			console.log(error);
-		}
+		login(email, password);
 	}
 
 	return (
@@ -53,38 +42,28 @@ function LoginScreen({ route, navigation }) {
 							source={require("../assets/login_icon.jpg")}
 						/>
 					</View>
-					<View style={styles.inputContainer}>
-						<Text style={styles.label}>E-mail manzil:</Text>
-						<TextInput
-							onChangeText={setEmail}
-							value={email}
-							style={styles.input}
-							autoCapitalize={false}
-							autoCorrect={false}
-							autoFocus={true}
-							autoComplete={false}
-							keyboardType="email-address"
-						/>
-					</View>
-					<View style={styles.inputContainer}>
-						<Text style={styles.label}>Parol:</Text>
-						<TextInput
-							onChangeText={setPassword}
-							value={password}
-							style={styles.input}
-							autoCapitalize={false}
-							autoCorrect={false}
-							autoComplete={false}
-							keyboardType="password"
-							secureTextEntry={true}
-						/>
-					</View>
 
-					{/* {error && (
-						<View style={styles.errorContainer}>
-							<Text style={styles.errorElement}>{error}</Text>
-						</View>
-					)} */}
+					<Input
+						label="E-mail manzil"
+						onChangeText={setEmail}
+						value={email}
+						autoCapitalize={false}
+						autoCorrect={false}
+						autoFocus={true}
+						autoComplete={false}
+						keyboardType="email-address"
+					/>
+
+					<Input
+						label="Parol"
+						onChangeText={setPassword}
+						value={password}
+						autoCapitalize={false}
+						autoCorrect={false}
+						autoComplete={false}
+						keyboardType="password"
+						secureTextEntry={true}
+					/>
 
 					<Button
 						buttonStyle={[{ fontWeight: "bold", fontSize: 16 }]}
@@ -105,37 +84,11 @@ const styles = StyleSheet.create({
 		height: "100%",
 		alignItems: "center",
 	},
-	inputContainer: {
-		flexDirection: "column",
-		gap: 5,
-	},
 	formContainer: {
 		width: "80%",
 		flexDirection: "column",
 		gap: 20,
 		marginTop: 150,
-	},
-	input: {
-		paddingHorizontal: 16,
-		paddingVertical: 12,
-		borderWidth: 1,
-		borderColor: "black",
-		borderRadius: 5,
-		borderColor: "#fff",
-		backgroundColor: "rgba(0, 0, 0, 0.3)",
-		fontWeight: "bold",
-		color: "#fff",
-	},
-	label: {
-		fontSize: 18,
-		fontWeight: "bold",
-		color: "#fff",
-	},
-	errorElement: {
-		color: "white",
-		fontWeight: "bold",
-		fontSize: 18,
-		textAlign: "center",
 	},
 	iconContainer: {
 		alignItems: "center",
